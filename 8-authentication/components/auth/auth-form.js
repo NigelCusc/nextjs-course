@@ -47,11 +47,15 @@ function AuthForm() {
       });
       if (!result.error) {
         // set auth state
+        // Redirect
         router.replace('/profile');
       }
     } else {
       try {
-        const result = await createUser(enteredEmail, enteredPassword);
+        const result = await createUser(
+          enteredEmail,
+          enteredPassword
+        );
         console.log(result);
       } catch (error) {
         console.log(error);
@@ -65,7 +69,12 @@ function AuthForm() {
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
+          <input
+            type="email"
+            id="email"
+            required
+            ref={emailInputRef}
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Your Password</label>
@@ -83,7 +92,9 @@ function AuthForm() {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
-            {isLogin ? 'Create new account' : 'Login with existing account'}
+            {isLogin
+              ? 'Create new account'
+              : 'Login with existing account'}
           </button>
         </div>
       </form>
